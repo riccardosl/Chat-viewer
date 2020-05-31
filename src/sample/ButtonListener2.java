@@ -19,18 +19,19 @@ public class ButtonListener2 implements EventHandler<ActionEvent> {
     private TextFlow textflow;
     private Label filelabel;
 
-    //Constructors
+    //Create Constructors for textflow and label elements
     public ButtonListener2(){
     }
+
     public ButtonListener2(TextFlow textFlow, Label filelabel){
         this.textflow = textFlow;
         this.filelabel = filelabel;
-
     }
 
 
- /*   Listener Method.
-    The class create a filechooser variable that open a dialog on the user PC for the msg file selection */
+ /** Listener Method.
+  *  The class create a filechooser variable that open a dialog on the user PC for the msg file selection
+  */
 
     public void handle(ActionEvent event) {
 
@@ -41,12 +42,11 @@ public class ButtonListener2 implements EventHandler<ActionEvent> {
                 new FileChooser.ExtensionFilter("Msg Files", "*.msg"));
 
         File selectedfile = filechooser.showOpenDialog(null);
-        //System.out.println("???" + selectedfile);
-/*      A if statement is used to verify the file is not empty.
-        In case this condition occurs it generate an alert.*/
+
+/*      An if statement is used to verify that file selected.
+        In case the windows is closed without selecting a file it generate an alert.*/
 
         if (selectedfile == null) {
-
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error Dialog");
             alert.setHeaderText("Error Dialog");
@@ -63,42 +63,37 @@ public class ButtonListener2 implements EventHandler<ActionEvent> {
         SkypeFileProc sfp = new SkypeFileProc(inputFileName);
         sfp.loadFile();
 
+        List<ChatEntry> chatEntries = sfp.parseFile();
 
-        List<SkypeFileProc.ChatEntry> chatEntries = sfp.parseFile();
-        String chattext = "";
-
+       String chattext = "";
 
         for (int a = 0; a < chatEntries.size(); a++) {
             //System.out.println(chatEntries.get(a));
             String name = chatEntries.get(a).getFromPerson();
             String time = chatEntries.get(a).getChatTime();
             String message = chatEntries.get(a).getMsgText();
-            //chattext = chattext + String.valueOf(chatEntries.get(a)) + "\n";
-            //textflow.getChildren().add(new Text(time));
-            //textflow.getChildren().add(new Text(name));
-            //textflow.getChildren().add(new Text(message));
+
 
             buildTextFlow(name, time, message);
         }
 
-
         textflow.getChildren().add(new Text(chattext));
-        //Text text2 = new Text(chattext);
-        //Setting font to the text
-        //text2.setFont(new Font(15));
-
     }
 
 
-/*    Elements from the msg file are sent to the textflow graphic component
-    The time field is surrounded by square brackets
-    The Username is colored in blue       */
+/**  Elements from the msg file are sent to the textflow graphic component
+  *   The time field is surrounded by square brackets
+  *  The Username is colored in blue
+   */
 
     private void buildTextFlow(String name, String time, String message) {
         Text timeText = new Text("[" + time + "] ");
         Text personText = new Text(name + ": ");
 
+
         personText.setFill(Color.DARKSLATEBLUE);
+
+
         textflow.getChildren().add(timeText);
         textflow.getChildren().add(personText);
 
@@ -128,7 +123,6 @@ public class ButtonListener2 implements EventHandler<ActionEvent> {
             }
         }
     }
-
 
 
 }

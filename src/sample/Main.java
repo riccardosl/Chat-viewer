@@ -13,9 +13,10 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 
-/**Main class initialize graphic components such as textFlow, button, label
+/** Main class initialize graphic components such as textFlow, button and label.
 * It add all the elements in a Vbox
-* starts the scene
+* starts the scene which represents the main window of the application.
+* @author Riccardo
  */
 
 public class Main extends Application {
@@ -35,9 +36,7 @@ public class Main extends Application {
         buttonbox.setAlignment(Pos.CENTER);
         buttonbox.getChildren().addAll(button);
 
-        Label FilePath = new Label("No file selected...Please select a file with the button above");
-
-        //button.setOnAction(new ButtonListener2(txtArea) );
+        Label FilePath = new Label("No file selected... Please select a file with the button above");
 
 
         //Creating the text flow plane
@@ -53,17 +52,15 @@ public class Main extends Application {
         ObservableList list = textFlowPane.getChildren();
 
         //Adding cylinder to the pane
-
         ScrollPane scroll = new ScrollPane();scroll.setContent(textFlowPane);
-        scroll.setFitToWidth(true); scroll.setFitToHeight(true);
+        scroll.setHbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
+        scroll.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
+        scroll.setFitToWidth(true);
+        scroll.setFitToHeight(true);
         //scroll.setPrefHeight(150);
 
-        scroll.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-        scroll.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
 
         button.setOnAction(new ButtonListener2(textFlowPane, FilePath));
-
-
 
 
         VBox txtAreaVbox = new VBox(5);
@@ -74,7 +71,6 @@ public class Main extends Application {
         mainvbox.getChildren().addAll(scroll, txtAreaVbox, buttonbox, FilePath);
 
 
-
         Scene scene = new Scene(mainvbox, 600,500);
         primaryStage.setScene(scene);
 
@@ -83,42 +79,7 @@ public class Main extends Application {
         primaryStage.show();
     }
 
-/*    public class ButtonListener implements EventHandler<ActionEvent> {
-        public void handle(ActionEvent event) {
 
-
-
-            FileChooser filechooser = new FileChooser();
-            filechooser.setTitle("Please select a msg file");
-            File selectedfile = filechooser.showOpenDialog(null);
-            String inputFileName = selectedfile.getAbsolutePath();
-
-            SkypeFileProc sfp = new SkypeFileProc(inputFileName);
-            sfp.loadFile();
-
-            // Pre java 6 looping logic
-            List<SkypeFileProc.ChatEntry> chatEntries = sfp.parseFile();
-            String chattext = "";
-
-
-            for (int a = 0; a < chatEntries.size(); a++) {
-                System.out.println(chatEntries.get(a));
-                chattext = chattext + String.valueOf(chatEntries.get(a)) + "\n";
-
-            }*/
-            //txtArea.setText(chattext);
-            //textFlowPane.getChildren().add(new Text(chattext));
-            //Text text2 = new Text(chattext);
-            //Setting font to the text
-            //text2.setFont(new Font(15));
-            //Setting color to the text
-            //text2.setFill(Color.DARKSLATEBLUE);
-
-
-
-
-        //}
-    //}
     public static void main(String[] args) {
         launch(args);
     }
