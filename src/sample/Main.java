@@ -14,9 +14,10 @@ import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 
 /** Main class initialize graphic components such as textFlow, button and label.
-* It add all the elements in a Vbox
-* starts the scene which represents the main window of the application.
-* @author Riccardo
+*  It add all the elements in a Vbox
+*  starts the scene which represents the main window of the application.
+*  @author Riccardo
+ * @version 1.0
  */
 
 public class Main extends Application {
@@ -27,8 +28,6 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         //Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
 
-
-
         primaryStage.setTitle("Chat Viewer");
         Button button = new Button("Choose a file...");
 
@@ -37,7 +36,6 @@ public class Main extends Application {
         buttonbox.getChildren().addAll(button);
 
         Label FilePath = new Label("No file selected... Please select a file with the button above");
-
 
         //Creating the text flow plane
         TextFlow textFlowPane = new TextFlow();
@@ -62,7 +60,6 @@ public class Main extends Application {
 
         button.setOnAction(new ButtonListener2(textFlowPane, FilePath));
 
-
         VBox txtAreaVbox = new VBox(5);
         txtAreaVbox.setPadding(new Insets(5, 5, 5, 5));
         txtAreaVbox.getChildren().addAll(textFlowPane);
@@ -74,8 +71,6 @@ public class Main extends Application {
         Scene scene = new Scene(mainvbox, 600,500);
         primaryStage.setScene(scene);
 
-
-        //primaryStage.setScene(new Scene(root, 300, 275));
         primaryStage.show();
     }
 

@@ -56,7 +56,19 @@ public class ButtonListener2 implements EventHandler<ActionEvent> {
         }
         //The selected file path is saved in inputFileName and passed to the label graphic element
         String inputFileName = selectedfile.getAbsolutePath();
-        filelabel.setText(inputFileName);
+
+        if (selectedfile.length() == 0) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Dialog");
+            alert.setHeaderText("File is empty!");
+            alert.setContentText("Please select a file with content");
+            alert.showAndWait();
+        } else {
+
+            filelabel.setText(inputFileName);
+        }
+
+        //filelabel.setText(inputFileName);
 
 
         // Send the content of the chat to the parsing class
@@ -68,7 +80,7 @@ public class ButtonListener2 implements EventHandler<ActionEvent> {
        String chattext = "";
 
         for (int a = 0; a < chatEntries.size(); a++) {
-            //System.out.println(chatEntries.get(a));
+
             String name = chatEntries.get(a).getFromPerson();
             String time = chatEntries.get(a).getChatTime();
             String message = chatEntries.get(a).getMsgText();

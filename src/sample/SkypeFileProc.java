@@ -22,7 +22,7 @@ public class SkypeFileProc {
      * ArrayList (inputLines), and return a true if the file was
      * loaded or false if not
      * @param inputFileName The name of the file that contains the chat entries
-     * @return True if the file was load else false
+     * returns True if the file was load else flse
      */
     public SkypeFileProc(String inputFileName) {
         fileToProcess = inputFileName;
@@ -32,7 +32,7 @@ public class SkypeFileProc {
      * This method reads strings of text in a file
      *
      * @return true if the file can be read
-     * @return false if the file cannot be read
+     * or false if the file cannot be read
      */
 
     public boolean loadFile() {
